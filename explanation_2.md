@@ -1,10 +1,13 @@
-# Code Design
-*find_files called the find_in_subdir() by passing the suffix and base_path.
+# Code design
+find_files called the **find_in_subdir()** by passing the suffix and base_path.
 Base case: If path ends with suffix then put it inside the global list named as files_list
 
-Approach: if the path is dir the look inside it and repeat this process untill all the files and directories inside it is not check at once.
-And At last return that list to the function by which this call is make first .i.e find_files()*
+The function simply the path if it is with suffix then, append into the list else check Is it directory if yes, then repeat this process for each sub directories and if path is neither satisfies any of  upper two conditions then return the existing list.
 
 # Complexity
- This recursive call happend exactly once for all the files and directories
- so, its O(n)
+The complexity depend on the depth and breadth of the directory:
+let if directory have "n" subdirectories and each sub directory have "f" no. of files.
+Then we have to go through each directory once and have to check each file
+so, the complexity in that case
+
+**O(n*f)**
