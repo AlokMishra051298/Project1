@@ -16,4 +16,6 @@ O(nlogn) - main time to insert "n" nodes into the Priority Queue (push- O(logn))
 Part 2: Huffman Decoding
 1. We start making decision by looking each bit of encoded data, if bit=0, then we need to move left of the present node and if bit=1 then we need to move right side.
 2. Where we got the leaf node we add its char value to decode string and again start this process from head
-3. We  continue this process until we traced each bit of encoded data.  
+3. We  continue this process until we traced each bit of encoded data.
+# Time Complexity  
+for "n" bits we, are looking for moving one step only so, it is O(n)
