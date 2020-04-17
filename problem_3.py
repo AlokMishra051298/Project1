@@ -163,7 +163,7 @@ def huffman_decoding(data,tree):
 
 if __name__ == "__main__":
 #     codes = {}
-    testcase=["Alok you can do it", "AAA", " ", "AAABBCCD"]
+    testcase=["Alok you can do it", "AAA", " ", "AAABBCCD", "ABCD"]
     count=1
     for case in testcase:
         print("Testcase {} ---------------".format(count))
