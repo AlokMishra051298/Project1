@@ -27,7 +27,7 @@ class DoublyLinkedList:
         return self.head
 
     #update the value of head node
-    def update(self, head, value):
+    def update(self, value):
         self.head.value=value
 
     def get_tail_key(self):
@@ -103,7 +103,7 @@ class LRU_Cache:
         return
 
 #-------------------------------------------------------------------------
-#Test cases are here
+#Test case1
 our_cache = LRU_Cache(5)
 
 our_cache.put(1, 1);
@@ -111,7 +111,7 @@ our_cache.put(2, 2);
 our_cache.put(3, 3);
 our_cache.put(4, 4);
 
-
+print("_________TEST CASE 1_________________")
 print(our_cache.get(1))       # returns 1
 print(our_cache.get(2))       # returns 2
 print(our_cache.get(9))      # returns -1 because 9 is not present in the cache
@@ -125,3 +125,31 @@ print(our_cache.get(3))      # returns -1 because the cache reached it's capacit
 #What if the node is already occured once but didn't present in the LRU_cache
 #and now we need to add it
 our_cache.put(3,3)
+
+#--------------------------------------------------
+#Test case 2
+print("_________TEST CASE 2_________________")
+new_cache = LRU_Cache(3)
+new_cache.put(1, "A")
+new_cache.put(2, "L")
+new_cache.put(3, "O")
+new_cache.put(4, "K")
+
+print(new_cache.get(2))
+print(new_cache.get("O"))
+new_cache.put(5, "M")
+print(new_cache.get(1))
+print(new_cache.get(4))
+print(new_cache.get(2))
+#----------------------------------------------------------
+#testcase 3
+print("_________TEST CASE 3_________________")
+fee_queue=LRU_Cache(4)
+fee_queue.put(1,"ALOK")
+fee_queue.put(2,"AMAN")
+fee_queue.put(1,"ANJALI")
+print(fee_queue.get(1))
+fee_queue.put(3,"ABHISHEK")
+fee_queue.put(4,"ANKITA")
+fee_queue.put(5,"RASHMI")
+print(fee_queue.get(2))
