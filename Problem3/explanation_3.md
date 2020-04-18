@@ -19,3 +19,6 @@ Part 2: Huffman Decoding
 3. We  continue this process until we traced each bit of encoded data.
 # Time Complexity  
 for "n" bits we, are looking for moving one step only so, it is O(n)
+
+#Space Complexity
+if we imagine that there are "k" characters in with some frequency, then for tree space complexity is O(k) and for decoded data we know there are "n" len string so, it is O(n)
