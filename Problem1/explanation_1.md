@@ -33,4 +33,5 @@ when value is not present in the cache it can be find by checking two conditions
 And When we can simply by the key and then we need to put it in the front.
 
 # Complexity
-Complexity of both operation is O(1)
+Time Complexity of both operation is O(1)
+Space Complexity is O(capacity)
