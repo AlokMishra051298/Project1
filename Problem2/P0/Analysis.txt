@@ -1,0 +1,25 @@
+Analysis of Task 0:
+Task0 simply contains two statement for accessing two index from lists calls and texts.
+So, time complexity is O(1). Accessing a value from list by index takes constant time.
+--------------------------------------------------------------------------------------------------------------------
+Analysis of Task 1:
+To find out no. of unique no.s we need to iterate over both calls.csv and texts.csv .
+Worst case is when all the records are unique in both files as well on both columns .i.e. incoming and receiving no.s
+So, here I used two loops one iterate over texts and other one on calls.
+Time complexity= 4n+4n=O(n)
+--------------------------------------------------------------------------------------------------------------------
+Analysis of Task 2:
+Used a dictionary to collect call times
+Task 2 have two subtasks to find out who spent longest time on phone.
+Firstly we have to find how much time each phonenumber spent with complexity O(n). And then we have to find the no. who spent maximum time on call which takes at most O(n)
+
+Time complexity=O(n) + O(n)= O(n)
+--------------------------------------------------------------------------------------------------------------------
+Analysis of Task 3:
+Task 3 contains two for loops each run "n" times in worst case. And a sorted function which takes O(nlogn) to sort list in lexicographic order.
+Time complexity= O(2n)+O(nlogn)=O(nlogn)
+
+----------------------------------------------------------------------------------------------------------------------
+Analysis of Task 4:
+Task 4 contains contains two loops and in worst case each run "n" times. And a sort opertion with order of "nlogn"
+Time complexity = O(n)+ O(nlogn)= O(nlogn)
