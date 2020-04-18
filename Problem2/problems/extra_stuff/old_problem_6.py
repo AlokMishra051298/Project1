@@ -10,7 +10,6 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.tail=None
 
     def __str__(self):
         cur_head = self.head
@@ -25,10 +24,13 @@ class LinkedList:
 
         if self.head is None:
             self.head = Node(value)
-            self.tail=self.head
             return
-        self.tail.next=Node(value)
-        self.tail=self.tail.next
+
+        node = self.head
+        while node.next:
+            node = node.next
+
+        node.next = Node(value)
 
     def size(self):
         size = 0
@@ -38,51 +40,80 @@ class LinkedList:
             node = node.next
 
         return size
-
-def build_llist(llset):
+#This function will remove the repetative 'value' node from the linked list
+def remove_repetative(llist):
     new_llist=LinkedList()
-    for x in llset:
-        new_llist.append(x)
-    return new_llist
-
-
-def return_set(llist):
-    llset=set()
-    head = llist.head
+    temp=dict()
+    head=llist.head
     while head is not None:
-        llset.add(head.value)
+        if not temp.get(head.value):
+            temp[head.value]=1
+            new_llist.append(head.value)
         head=head.next
-    return llset
-
+    return new_llist
+#union function with no repetative values
 def union(llist_1, llist_2):
     #if one of the two linked list is None, then remove its repetativevalues and return llist
     if llist_1.head is None and llist_2.head is None:
         return None
     if llist_1.head is None:
-        set1=return_set(llist_2)
-        llist_2=build_llist(set1)
+        llist_2=remove_repetative(llist_2)
         return llist_2
     if llist_2.head is None:
-        set1=return_set(llist_1)
-        llist_1=build_llist(set1)
+        llist_1=remove_repetative(llist_1)
         return llist_1
-
-    set1=return_set(llist_1)
-    set2=return_set(llist_2)
-    result_set=set1.union(set2)
+    #if none of two linkedlist is None, then firstly remove the repetative values from both list
+    llist_1=remove_repetative(llist_1)
+    llist_2=remove_repetative(llist_2)
+    head1=llist_1.head
+    head2=llist_2.head
     #make object of LinkedList
-    union=build_llist(result_set)
+    union=LinkedList()
+    #first append nodes of llist1 to union
+    while head1 is not None:
+        if union.head is None:
+            union.append(head1.value)
+        union_head=union.head
+        while union_head is not None:
+            #here we avoid adding duplicate nodes
+            if union_head.value==head1.value:
+                break
+            union_head=union_head.next
+        #if any node any node occur then then not at None so, we can't add the node
+        if union_head is None:
+            union.append(head1.value)
+        head1=head1.next
+    #adding nodes of llis_2 by avoiding addition of duplicate nodes to union
+    while head2 is not None:
+        union_head=union.head
+        while union_head is not None:
+            if union_head.value==head2.value:
+                break
+            union_head=union_head.next
+        if union_head is None:
+            union.append(head2.value)
+        head2=head2.next
     return union
 
 #this function return the intersection of two linked list is any of the list is none then, returns None
 def intersection(llist_1, llist_2):
     if llist_1.head is None or llist_2.head is None:
         return None
-    set1=return_set(llist_1)
-    set2=return_set(llist_2)
-    result_set=set1.intersection(set2)
-    #make object of LinkedList
-    intersection=build_llist(result_set)
+    #removing the repetative nodes
+    llist_1=remove_repetative(llist_1)
+    llist_2=remove_repetative(llist_2)
+    head1=llist_1.head
+    #Linkedlist object
+    intersection=LinkedList()
+    #check for each node in llist_1 if it is it llist_2 then insert to intersection linkkedlist object
+    while head1 is not None:
+        head2=llist_2.head
+        while head2 is not None:
+            if head2.value==head1.value:
+                intersection.append(head1.value)
+            head2=head2.next
+        head1=head1.next
+    #if no value is in intersection then return None
     if intersection.head is None:
         return None
     return intersection
