@@ -6,3 +6,7 @@ I firstly add elements of linked list 1 and 2 to set so, we can avoid duplicates
 let "n" elements in llist1 and "m" elements in llist2
 then, time complexity for Union is O(n+m)
 and time complexity for Intersection is O(n*m)
+
+#Space complexity
+for union, O(n+m)
+for intersection, O(m) or O(n) which is minimum
