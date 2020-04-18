@@ -25,7 +25,12 @@ a. add_block: which sipmly add the block to BlockChain's tail and store the hash
 and increase the size of chain
 b. print_blockchain: simply traverse the whole chain and print the values stored inside block
 -------------------------------------------------------
-# Complexity
+# Time Complexity
 
 add_block(): O(1)
 print_blockchain(): O(n)
+
+# Space Complexity
+
+If, there are "n" blocks, then We need "n" nodes to our Block Chain and "n" elements to our chain dictionary.
+So, it is O(n)
