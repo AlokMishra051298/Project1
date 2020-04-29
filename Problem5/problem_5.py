@@ -79,3 +79,15 @@ chain.add_block("CISF")
 chain.add_block("CRPF")
 #----------print BlockChain
 chain.print_blockchain()
+print("________________________________EDGECASE 1_________________________________")
+
+edge = BlockChain()
+edge.add_block("")
+edge.print_blockchain()
+
+print("________________________________EDGECASE 2_________________________________")
+edge1 = BlockChain()
+edge1.add_block({"Name": "alok", "class": "XII-A"})
+edge1.add_block({"Name": "Praveen", "class": "XII-A"})
+edge1.add_block({"Name": "Nidhi", "class": "XII-A"})
+edge1.print_blockchain()
