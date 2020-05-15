@@ -59,16 +59,16 @@ class LRU_Cache:
         self.lookup_dict=dict() #used dictionary because of faster lookups
 
     def get(self, key):
-        if self.capacity==0:
-            return "You can't access anything from queue because Capacity of queue is Zero(0)"
+        # if self.capacity==0:
+        #     return "You can't access anything from queue because Capacity of queue is Zero(0)"
         # The cases where the searched key is not present in the cache, so it returns -1
         if not self.lookup_dict.get(key) or self.lookup_dict[key]==-1:
             return -1
-        #Get the value corresponding to key and put this node on the first position 
+        #Get the value corresponding to key and put this node on the first position
         value=self.lookup_dict[key].value
         self.put(key,value)
         return value
-        
+
     def put(self, key, value):
         #edge case if capacity is empty
         if self.capacity==0:
@@ -80,7 +80,7 @@ class LRU_Cache:
             if node==self.cache.head:
                 self.cache.update(value)
                 return
-            #if that node is present at tail so, we only need to detach the last node and 
+            #if that node is present at tail so, we only need to detach the last node and
             #shift the tail left side and insert that node in the front by using insert() function
             elif node==self.cache.tail:
                 self.cache.delete_tail()
@@ -90,9 +90,9 @@ class LRU_Cache:
             #and place it at head using insertFirst() function
             self.cache.delete_middle(node)
             self.lookup_dict[key]=self.cache.insert(key,value) #and insert node at first
-            return 
+            return
         #if key is newly introduced to cache
-        
+
         #if the current length of cache is less the maximum capacity, then follow these steps
         if self.cache.no_of_ele+1<=self.capacity:
             node=self.cache.insert(key, value)
@@ -118,7 +118,7 @@ print(our_cache.get(1))       # returns 1
 print(our_cache.get(2))       # returns 2
 print(our_cache.get(9))      # returns -1 because 9 is not present in the cache
 
-our_cache.put(5, 5) 
+our_cache.put(5, 5)
 our_cache.put(6, 6)
 
 print(our_cache.get(3))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
@@ -173,3 +173,7 @@ fee_queue.put(3,"ABHISHEK")
 fee_queue.put(4,"ANKITA")
 fee_queue.put(5,"RASHMI")
 print(fee_queue.get(2))
+
+print("_________EDGE CASE _________________")
+zero_capacity=LRU_Cache(0)
+print(zero_capacity.get(0))
