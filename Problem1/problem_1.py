@@ -53,42 +53,46 @@ class DoublyLinkedList:
 class LRU_Cache:
 
     def __init__(self, capacity):
-                # Initialize class variables
+        # Initialize class variables
         self.capacity=capacity #the capacity of the cache
-        self.cache=DoublyLinkedList() #object of DoublyLinkedList
+        self.cache=DoublyLinkedList()
         self.lookup_dict=dict() #used dictionary because of faster lookups
 
     def get(self, key):
+        if self.capacity==0:
+            return "You can't access anything from queue because Capacity of queue is Zero(0)"
         # The cases where the searched key is not present in the cache, so it returns -1
         if not self.lookup_dict.get(key) or self.lookup_dict[key]==-1:
             return -1
-        #Get the value corresponding to key and put this node on the first position
+        #Get the value corresponding to key and put this node on the first position 
         value=self.lookup_dict[key].value
         self.put(key,value)
         return value
-
+        
     def put(self, key, value):
-    # if the key appeared before and present in the cache
+        #edge case if capacity is empty
+        if self.capacity==0:
+            return "You can't add anything to queue because Capacity of queue is Zero(0)"
+        # if the key appeared before and present in the cache
         if self.lookup_dict.get(key) and self.lookup_dict[key]!=-1:
             node=self.lookup_dict[key]
-            #if that node is at front the we only need to update its value and doesn't need any extra operation
+            #if that node is at front the we only need to change its value and doesn't need any extra operation
             if node==self.cache.head:
                 self.cache.update(value)
                 return
-            #if that node is present at tail so,
-            # we only need to detach the last node and
-            # shift the tail left side and insert
-            # that node in the front by using insert() of DoublyLinkedList
-            elif node==(self.cache.tail):
+            #if that node is present at tail so, we only need to detach the last node and 
+            #shift the tail left side and insert that node in the front by using insert() function
+            elif node==self.cache.tail:
                 self.cache.delete_tail()
                 self.lookup_dict[key]=self.cache.insert(key,value)
                 return
             #else the node is somewhere in cache except the head and tail, so we just remove it from the cache
-            #and place it at head using insert() of the DoublyLinkedList class.
+            #and place it at head using insertFirst() function
             self.cache.delete_middle(node)
             self.lookup_dict[key]=self.cache.insert(key,value) #and insert node at first
-            return
+            return 
         #if key is newly introduced to cache
+        
         #if the current length of cache is less the maximum capacity, then follow these steps
         if self.cache.no_of_ele+1<=self.capacity:
             node=self.cache.insert(key, value)
@@ -102,6 +106,22 @@ class LRU_Cache:
         self.lookup_dict[key]=self.cache.insert(key, value)
         return
 
+our_cache = LRU_Cache(5)
+
+our_cache.put(1, 1);
+our_cache.put(2, 2);
+our_cache.put(3, 3);
+our_cache.put(4, 4);
+
+
+print(our_cache.get(1))       # returns 1
+print(our_cache.get(2))       # returns 2
+print(our_cache.get(9))      # returns -1 because 9 is not present in the cache
+
+our_cache.put(5, 5) 
+our_cache.put(6, 6)
+
+print(our_cache.get(3))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
 #-------------------------------------------------------------------------
 #Test case1
 our_cache = LRU_Cache(5)
